@@ -1,0 +1,29 @@
+<div *ngIf="hero">
+  <form #heroForm="ngForm" appIdentityRevealed>
+    <div [hidden]="heroForm.submitted">
+        <div class="form-group">
+          <h2>{{hero.name | uppercase}} Detalles</h2>
+          <div><span>Id: </span>{{hero.id}}</div>
+          <div>
+            <label for="name">Nombre: </label>
+            <input id="name" name="name" class="form-control"
+              required minlength="3"
+              [(ngModel)]="hero.name" 
+              placeholder="Hero name"  #name="ngModel"/>
+          </div>
+          <div *ngIf="name.invalid"
+              class="alert alert-danger">
+            <div *ngIf="name.errors?.required">
+              El nombre es requerido.
+            </div>
+            <div *ngIf="name.errors?.minlength">
+              El Nombre debe tener como minimo 3 caracteres.
+            </div>
+          </div>  
+          <button (click)="goBack()">Volver</button>
+          <button (click)="save()">Guardar</button>
+        </div>
+      
+    </div>  
+  </form>
+  </div>
